@@ -1,4 +1,5 @@
-from ..schemas import Profile, Weapon, SequenceThreshold
+from ..schemas.profile import Profile, Weapon
+from ..schemas.engine import SequenceThreshold
 
 
 def hit(attacker: Weapon) -> int:

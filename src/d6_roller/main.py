@@ -1,4 +1,4 @@
-from .schemas import Profile, RangedWeapon
+from .schemas.profile import Profile, RangedWeapon
 from .engine import simulate
 
 
@@ -11,11 +11,11 @@ def main():
     )
     bolter = RangedWeapon(
         name='bolt rifle',
-        a=2,
+        a='2',
         skill=3,
         s=4,
         ap=-1,
-        d=1,
+        d='1',
         range=24
     )
     simulate(bolter, intercessor)

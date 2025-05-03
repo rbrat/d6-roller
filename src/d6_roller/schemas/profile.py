@@ -27,7 +27,7 @@ class Weapon(BaseModel):
 
 
 class MeleeWeapon(Weapon):
-    pass
+    ...
 
 
 class RangedWeapon(Weapon):

@@ -23,7 +23,7 @@ def wound(attacker: Weapon, defender: Profile) -> int:
             return 5
 
 
-def save(attacker: Weapon, defender: Profile) -> int:
+def save(attacker: Weapon, defender: Profile) -> int | None:
     diff_value = defender.sv - attacker.ap
     if defender.inv and diff_value > defender.inv:
         return defender.inv
@@ -32,7 +32,7 @@ def save(attacker: Weapon, defender: Profile) -> int:
     return diff_value
 
 
-def get_thresholds(attacker: Weapon, defender: Profile) -> dict:
+def get_thresholds(attacker: Weapon, defender: Profile) -> SequenceThreshold:
     return SequenceThreshold(**{
         'to_hit': hit(attacker),
         'to_wound': wound(attacker, defender),

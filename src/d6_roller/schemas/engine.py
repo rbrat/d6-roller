@@ -9,8 +9,7 @@ class SequenceThreshold(BaseModel):
     save: int | None = Field()
 
 
-@dataclass
-class Sequence:
+class Sequence(BaseModel):
     attacks: RandInt
     threshold: SequenceThreshold
     damage: RandInt

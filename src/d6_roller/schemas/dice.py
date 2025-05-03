@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def build_dice(sides: int = 6) -> np.array:
+def build_dice(sides: int = 6) -> np.ndarray:
     return np.array([i for i in range(1, sides + 1)])
 
 

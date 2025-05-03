@@ -15,14 +15,14 @@ class RandInt(BaseModel):
     this class represents profile values that can be random or determined (e.g. attacks number or damage value),
     like "1", "2" or "D6", "D3+3", "2D6+1".
     """
-    dice_num: int = Field(default=None)
-    dice_size: str = Field(default=None)
-    stationary: int = Field(default=None)
+    dice_num: int = Field(default=0)
+    dice_size: str = Field(default='')
+    stationary: int = Field(default=0)
 
     def __init__(self, value: str, **data):
-        super().__init__(**data)
         if not value:
-            return
+            raise ValueError("Value required")
+        super().__init__(**data)
         value = value.upper().replace(' ', '')
         if 'D' not in value:  # stationary value, no roll required
             self.stationary = int(value)
@@ -31,7 +31,7 @@ class RandInt(BaseModel):
             dice, stationary = value.split('+', maxsplit=2)
         else:
             dice, stationary = value, 0
-        num, size = dice.split('D')
+        num, size = dice.split('D', maxsplit=2)
         self.dice_num = int(num or 1)
         self.dice_size = size
         self.stationary = int(stationary)
@@ -40,7 +40,7 @@ class RandInt(BaseModel):
     def get(self) -> int:
         result = 0
         if self.dice_num:
-            result = reduce(random.choice, [DICE_MAP[self.dice_size] for _ in range(self.dice_num)], 0)
+            result = sum([random.choice(DICE_MAP[self.dice_size]) for _ in range(self.dice_num)])
         result += self.stationary
         return result
 
@@ -48,6 +48,6 @@ class RandInt(BaseModel):
         if not self.dice_num:
             return str(self.stationary)
         stationary = f'+{self.stationary}' if self.stationary else ''
-        if len(self.dice_num) == 1:
-            return f'D{len(self.dice[0])}{stationary}'
-        return f'{len(self.dice)}D{len(self.dice[0])}{self.stationary}'
+        if self.dice_num == 1:
+            return f'D{self.dice_size}{stationary}'
+        return f'{self.dice_num}D{self.dice_size}{stationary}'

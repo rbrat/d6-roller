@@ -11,11 +11,11 @@ def main():
     )
     bolter = RangedWeapon(
         name='bolt rifle',
-        a='2',
+        a='2',  # type: ignore
         skill=3,
         s=4,
         ap=-1,
-        d='1',
+        d='1',  # type: ignore
         range=24
     )
     simulate(bolter, intercessor)

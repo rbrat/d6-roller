@@ -7,7 +7,7 @@ class Weapon(BaseModel):
 
     name: str = Field()
     a: RandInt = Field()
-    skill: int = Field()
+    skill: int | None = Field()
     s: int = Field()
     ap: int = Field()
     d: RandInt = Field()

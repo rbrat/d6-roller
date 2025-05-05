@@ -2,7 +2,7 @@ from ..schemas.profile import Profile, Weapon
 from ..schemas.engine import SequenceThreshold
 
 
-def hit(attacker: Weapon) -> int:
+def hit(attacker: Weapon) -> int | None:
     return attacker.skill
 
 
@@ -33,8 +33,8 @@ def save(attacker: Weapon, defender: Profile) -> int | None:
 
 
 def get_thresholds(attacker: Weapon, defender: Profile) -> SequenceThreshold:
-    return SequenceThreshold(**{
-        'to_hit': hit(attacker),
-        'to_wound': wound(attacker, defender),
-        'save': save(attacker, defender)
-    })
+    return SequenceThreshold(
+        to_hit=hit(attacker),
+        to_wound=wound(attacker, defender),
+        save=save(attacker, defender)
+    )

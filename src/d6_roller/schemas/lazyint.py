@@ -1,7 +1,6 @@
 import numpy as np
 from numpy import random
 from pydantic import BaseModel, Field
-from functools import reduce
 from .dice import d6, d3
 
 DICE_MAP = {

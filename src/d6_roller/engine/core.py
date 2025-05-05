@@ -1,3 +1,4 @@
+from ..logger import logger
 import numpy as np
 from numpy import random
 
@@ -29,11 +30,11 @@ def inflict_damage(dice: int, value: RandInt) -> int:
 
 def make_rolls(sequence: Sequence) -> int:
     dice = roll_hit(sequence.attacks.get, sequence.threshold.to_hit)
-    print(f'rolled {dice} successful hits')
+    logger.info('rolled %s successful hits', dice)
     dice = roll_hit(dice, sequence.threshold.to_wound)
-    print(f'rolled {dice} successful wounds')
+    logger.info('rolled %s successful wounds', dice)
     dice = roll_save(dice, sequence.threshold.save)
-    print(f'rolled {dice} failed saves')
+    logger.info('rolled %s failed saves', dice)
     return inflict_damage(dice, sequence.damage)
 
 
@@ -43,7 +44,7 @@ def simulate(attacker: Weapon, defender: Profile) -> int:
         threshold=get_thresholds(attacker, defender),
         damage=attacker.d
     )
-    print(f'Attacking {defender} with {attacker}')
-    print(sequence)
+    logger.info('Attacking %s with %s', defender, attacker)
+    logger.info(sequence)
     damage = make_rolls(sequence)
     return damage

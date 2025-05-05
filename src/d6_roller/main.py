@@ -1,5 +1,6 @@
 from .schemas.profile import Profile, RangedWeapon
 from .engine import simulate
+from .logger import logger
 
 
 def main():
@@ -18,4 +19,4 @@ def main():
         d='1',  # type: ignore
         range=24
     )
-    print(f'Total damage: {simulate(bolter, intercessor)}')
+    logger.info('Total damage: %s', simulate(bolter, intercessor))

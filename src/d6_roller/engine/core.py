@@ -12,19 +12,19 @@ from ..schemas.dice import d6
 def roll_hit(dice: int, threshold: int | None) -> int:
     if not threshold:
         return dice
-    roll = np.array([random.choice(d6) for _ in range(dice)])
+    roll = np.array([random.choice(d6) for _ in np.arange(dice)])
     return roll[roll >= threshold].size
 
 
 def roll_save(dice: int, threshold: int | None) -> int:
     if not threshold:
         return dice
-    roll = np.array([random.choice(d6) for _ in range(dice)])
+    roll = np.array([random.choice(d6) for _ in np.arange(dice)])
     return roll[roll < threshold].size
 
 
 def inflict_damage(dice: int, value: RandInt) -> int:
-    roll = np.array([value.get for _ in range(dice)])
+    roll = np.array([value.get for _ in np.arange(dice)])
     return np.sum(roll)
 
 

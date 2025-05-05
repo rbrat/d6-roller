@@ -18,4 +18,4 @@ def main():
         d='1',  # type: ignore
         range=24
     )
-    simulate(bolter, intercessor)
+    print(f'Total damage: {simulate(bolter, intercessor)}')

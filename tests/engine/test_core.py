@@ -16,22 +16,22 @@ class TestCore:
         assert 0 <= roll_save(2, 6) <= 2
 
     def test_inflict_damage(self):
-        assert inflict_damage(1, RandInt('2')) == 2
+        assert inflict_damage(1, RandInt(2)) == 2
         assert 1 <= inflict_damage(1, RandInt('D6')) <= 6
         assert 3 <= inflict_damage(1, RandInt('2D6+1')) <= 13
         assert 3 <= inflict_damage(3, RandInt('D6')) <= 18
 
     def test_make_rolls(self):
         sequence = Sequence(
-            attacks=RandInt('2'),
+            attacks=RandInt(2),
             threshold=SequenceThreshold(to_hit=3, to_wound=4, save=3),
-            damage=RandInt('1')
+            damage=RandInt(1)
         )
         assert 0 <= make_rolls(sequence) <= 2
         sequence = Sequence(
             attacks=RandInt('D6'),
             threshold=SequenceThreshold(to_hit=None, to_wound=3, save=4),
-            damage=RandInt('1')
+            damage=RandInt(1)
         )
         assert 0 <= make_rolls(sequence) <= 6
 

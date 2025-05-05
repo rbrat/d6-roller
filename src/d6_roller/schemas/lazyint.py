@@ -1,5 +1,5 @@
 from numpy import random
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, PositiveInt, NonNegativeInt
 from .dice import d6, d3
 
 DICE_MAP = {
@@ -14,14 +14,19 @@ class RandInt(BaseModel):
     like "1", "2" or "D6", "D3+3", "2D6+1".
     DICE_MAP constraints available dice
     """
-    dice_num: int = Field(default=0)
+    dice_num: NonNegativeInt = Field(default=0)
     dice_size: str = Field(default='')
-    stationary: int = Field(default=0)
+    stationary: NonNegativeInt = Field(default=0)
 
-    def __init__(self, value: str, **data):
+    def __init__(self, value: str | PositiveInt, **data):
         if not value:
             raise ValueError("Value required")
         super().__init__(**data)
+        if isinstance(value, int):
+            if value <= 0:
+                raise ValueError("Stationary number can be only positive")
+            self.stationary = value
+            return
         value = value.upper().replace(' ', '')
         if 'D' not in value:  # stationary value, no roll required
             self.stationary = int(value)

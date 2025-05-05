@@ -24,30 +24,30 @@ profile_landraider = Profile(
 
 weapon_ccw = MeleeWeapon(
     name='close combat weapon',
-    a='3',  # type: ignore
+    a=3,  # type: ignore
     skill=3,
     s=4,
     ap=0,
-    d='1',  # type: ignore
+    d=1,  # type: ignore
 )
 
 weapon_bolter = RangedWeapon(
     name='bolt rifle',
-    a='2',  # type: ignore
+    a=2,  # type: ignore
     skill=3,
     s=4,
     ap=-1,
-    d='1',  # type: ignore
+    d=1,  # type: ignore
     range=24,
 )
 
 weapon_mcpw = MeleeWeapon(
     name='Master-crafted power weapon',
-    a='6',  # type: ignore
+    a=6,  # type: ignore
     skill=2,
     s=6,
     ap=-2,
-    d='2',  # type: ignore
+    d=2,  # type: ignore
 )
 
 weapon_pyreblaster = RangedWeapon(
@@ -56,13 +56,13 @@ weapon_pyreblaster = RangedWeapon(
     skill=None,
     s=5,
     ap=-1,
-    d='1',  # type: ignore
+    d=1,  # type: ignore
     range=12,
 )
 
 weapon_multimelta = RangedWeapon(
     name='Multi-melta',
-    a='2',  # type: ignore
+    a=2,  # type: ignore
     skill=4,
     s=9,
     ap=-4,
@@ -72,7 +72,7 @@ weapon_multimelta = RangedWeapon(
 
 weapon_shoota = RangedWeapon(
     name='Shoota',
-    a='2',  # type: ignore
+    a=2,  # type: ignore
     skill=5,
     s=4,
     ap=0,
@@ -82,10 +82,10 @@ weapon_shoota = RangedWeapon(
 
 weapon_shoota_6 = RangedWeapon(
     name='6-shoota',
-    a='2',  # type: ignore
+    a=2,  # type: ignore
     skill=6,
     s=4,
     ap=0,
-    d='1',  # type: ignore
+    d=1,  # type: ignore
     range=18,
 )

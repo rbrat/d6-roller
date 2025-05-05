@@ -1,7 +1,7 @@
 from src.d6_roller.engine.core import roll_hit, roll_save, inflict_damage, make_rolls, simulate
 from src.d6_roller.schemas.lazyint import RandInt
 from src.d6_roller.schemas.engine import Sequence, SequenceThreshold
-from .mocks import weapon_bolter, profile_intercessor
+from ..mocks import weapon_bolter, profile_intercessor
 
 
 class TestCore:

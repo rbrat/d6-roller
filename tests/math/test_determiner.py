@@ -1,6 +1,6 @@
 from src.d6_roller.math.determiner import get_thresholds, hit, wound, save
 from src.d6_roller.schemas.engine import SequenceThreshold
-from .mocks import (
+from ..mocks import (
     profile_intercessor,
     profile_terminator,
     weapon_bolter,

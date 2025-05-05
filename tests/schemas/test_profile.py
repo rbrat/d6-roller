@@ -1,4 +1,4 @@
-from .mocks import profile_intercessor, profile_terminator, weapon_bolter, weapon_ccw
+from ..mocks import profile_intercessor, profile_terminator, weapon_bolter, weapon_ccw
 
 
 class TestProfile:

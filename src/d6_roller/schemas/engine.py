@@ -1,11 +1,11 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, PositiveInt
 from .lazyint import RandInt
 
 
 class SequenceThreshold(BaseModel):
-    to_hit: int | None = Field()
-    to_wound: int = Field()
-    save: int | None = Field()
+    to_hit: PositiveInt | None = Field(gt=1, le=6)
+    to_wound: PositiveInt = Field(gt=1, le=6)
+    save: PositiveInt | None = Field(gt=1, le=6)
 
 
 class Sequence(BaseModel):

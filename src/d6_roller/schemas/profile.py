@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, PositiveInt, NonPositiveInt
 from .lazyint import RandInt
 
 
@@ -7,9 +7,9 @@ class Weapon(BaseModel):
 
     name: str = Field()
     a: RandInt = Field()
-    skill: int | None = Field()
-    s: int = Field()
-    ap: int = Field()
+    skill: PositiveInt | None = Field(gt=1, le=6)
+    s: PositiveInt = Field()
+    ap: NonPositiveInt = Field()
     d: RandInt = Field()
 
     def _convert_random_fields(self, data):
@@ -31,15 +31,15 @@ class MeleeWeapon(Weapon):
 
 
 class RangedWeapon(Weapon):
-    range: int = Field()
+    range: PositiveInt = Field()
 
 
 class Profile(BaseModel):
     name: str = Field()
-    t: int = Field()
-    sv: int = Field()
-    w: int = Field()
-    inv: int | None = Field(default=None)
+    t: PositiveInt = Field()
+    sv: PositiveInt = Field(gt=1, le=6)
+    w: PositiveInt = Field()
+    inv: PositiveInt | None = Field(default=None, gt=1, le=6)
     ranged_weapons: list[RangedWeapon] | None = Field(default=[])
     melee_weapons: list[MeleeWeapon] | None = Field(default=[])
 

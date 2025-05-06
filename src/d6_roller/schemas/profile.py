@@ -46,3 +46,6 @@ class Profile(BaseModel):
     def __str__(self):
         inv = f'INV {self.inv}+ ' if self.inv else ''
         return f'{self.name} [T {self.t} Sv {self.sv}+ {inv}W {self.w}]'
+
+
+Unit = list[Profile]

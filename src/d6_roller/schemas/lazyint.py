@@ -1,4 +1,4 @@
-from numpy import random
+import numpy as np
 from pydantic import BaseModel, Field, PositiveInt, NonNegativeInt
 from .dice import d6, d3
 
@@ -36,7 +36,7 @@ class RandInt(BaseModel):
         else:
             dice, stationary = value, 0
         num, size = dice.split('D', maxsplit=2)
-        if size not in DICE_MAP.keys():
+        if size not in DICE_MAP:
             raise ValueError('Unknown dice size')
         self.dice_num = int(num or 1)
         self.dice_size = size
@@ -47,7 +47,8 @@ class RandInt(BaseModel):
         match self.dice_num:
             case 0: return self.stationary
             case _:
-                return sum([random.choice(DICE_MAP[self.dice_size]) for _ in range(self.dice_num)]) + self.stationary
+                return sum([np.random.choice(DICE_MAP[self.dice_size]) for _ in np.arange(self.dice_num)]) \
+                    + self.stationary
 
     def __str__(self):
         match self.dice_num:

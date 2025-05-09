@@ -30,6 +30,7 @@ class TestRandint:
     def test_str(self):
         assert str(RandInt('D6')) == 'D6'
         assert str(RandInt('D3')) == 'D3'
+        assert str(RandInt('d3')) == 'D3'
         assert str(RandInt('D6+1')) == 'D6+1'
         assert str(RandInt('3D6')) == '3D6'
         assert str(RandInt('2D6 + 1')) == '2D6+1'

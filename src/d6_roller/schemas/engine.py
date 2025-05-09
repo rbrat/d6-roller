@@ -15,7 +15,7 @@ class Sequence(BaseModel):
 
     def __str__(self):
         attacks = f'{self.attacks} attacks'
-        hit = f'{self.threshold.to_hit}+ to hit'
+        hit = f'{self.threshold.to_hit}+ to hit' if self.threshold.to_hit else 'autohit'
         wound = f'{self.threshold.to_wound}+ to wound'
         save = f'{self.threshold.save}+ to save' \
             if self.threshold.save else 'no save'

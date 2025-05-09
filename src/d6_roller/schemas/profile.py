@@ -23,7 +23,8 @@ class Weapon(BaseModel):
         super().__init__(**data)
 
     def __str__(self):
-        return f"""{self.name} [A {self.a} BS/WS {self.skill}+ S {self.s} AP {self.ap} D {self.d}]"""
+        skill = f'{self.skill}+' if self.skill else 'N/A'
+        return f"""{self.name} [A {self.a} BS/WS {skill} S {self.s} AP {self.ap} D {self.d}]"""
 
 
 class MeleeWeapon(Weapon):

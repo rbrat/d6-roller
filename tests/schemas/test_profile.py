@@ -1,5 +1,5 @@
 import pytest
-from ..mocks import profile_intercessor, profile_terminator, weapon_bolter, weapon_ccw
+from ..mocks import profile_intercessor, profile_terminator, weapon_bolter, weapon_ccw, weapon_pyreblaster
 from d6_roller.schemas.profile import MeleeWeapon, RangedWeapon, Profile
 from pydantic_core import ValidationError
 
@@ -46,3 +46,4 @@ class TestWeapon:
     def test_str(self):
         assert str(weapon_ccw) == 'close combat weapon [A 3 BS/WS 3+ S 4 AP 0 D 1]'
         assert str(weapon_bolter) == 'bolt rifle [A 2 BS/WS 3+ S 4 AP -1 D 1]'
+        assert str(weapon_pyreblaster) == 'Pyreblaster [A D6 BS/WS N/A S 5 AP -1 D 1]'

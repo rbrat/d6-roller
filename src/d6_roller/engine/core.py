@@ -1,6 +1,5 @@
 from ..logger import logger
 import numpy as np
-from numpy import random
 
 from ..math import get_thresholds
 from ..schemas.profile import Profile, Weapon
@@ -17,7 +16,7 @@ CHECK_DICT = {
 def make_rolls(dice: int, threshold: int | None, is_positive: bool = False) -> int:
     if not threshold:
         return dice
-    roll = np.array([random.choice(d6) for _ in np.arange(dice)])
+    roll = np.array([np.random.choice(d6) for _ in np.arange(dice)])
     logger.info("Dice rolled %s", roll)
     return roll[CHECK_DICT[is_positive](roll, threshold)].size
 

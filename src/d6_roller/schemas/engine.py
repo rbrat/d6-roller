@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field, PositiveInt
+from pydantic import BaseModel, Field, PositiveInt, NonNegativeInt
 from .lazyint import RandInt
 
 
@@ -21,3 +21,11 @@ class Sequence(BaseModel):
             if self.threshold.save else 'no save'
         damage = f'with {self.damage} damage each'
         return f'{attacks}, {hit}, {wound}, {save} {damage}'
+
+
+class RollResult(BaseModel):
+    success: NonNegativeInt
+    crit: NonNegativeInt
+
+    def __str__(self):
+        return f'{self.success + self.crit} successful, {self.crit} crits'

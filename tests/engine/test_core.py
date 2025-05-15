@@ -6,14 +6,14 @@ from ..mocks import weapon_bolter, profile_intercessor
 
 class TestCore:
     def test_roll_positive_check(self):
-        assert (0 <= roll_positive_check(1, 3) <= 1)
-        assert (0 <= roll_positive_check(2, 2) <= 2)
-        assert roll_positive_check(2, None) == 2
+        assert (0 <= roll_positive_check(1, 3).success <= 1)
+        assert (0 <= roll_positive_check(2, 2).success <= 2)
+        assert roll_positive_check(2, None).success == 2
 
     def test_roll_negative_check(self):
-        assert roll_negative_check(2, None) == 2
-        assert 0 <= roll_negative_check(1, 3) <= 1
-        assert 0 <= roll_negative_check(2, 6) <= 2
+        assert roll_negative_check(2, None).success == 2
+        assert 0 <= roll_negative_check(1, 3).success <= 1
+        assert 0 <= roll_negative_check(2, 6).success <= 2
 
     def test_inflict_damage(self):
         assert inflict_damage(1, RandInt(2)) == 2

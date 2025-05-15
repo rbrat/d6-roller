@@ -1,4 +1,5 @@
-from pydantic import BaseModel, Field, PositiveInt, NonNegativeInt
+from typing import Self
+from pydantic import BaseModel, Field, PositiveInt, NonNegativeInt, model_validator
 from .lazyint import RandInt
 
 
@@ -27,5 +28,11 @@ class RollResult(BaseModel):
     success: NonNegativeInt
     crit: NonNegativeInt
 
+    @model_validator(mode='after')
+    def is_correct(self) -> Self:
+        if self.crit > self.success:
+            raise ValueError('crit value cannot exceed success value')
+        return self
+
     def __str__(self):
-        return f'{self.success + self.crit} successful, {self.crit} crits'
+        return f'{self.success} total, {self.crit} crits'

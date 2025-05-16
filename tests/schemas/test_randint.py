@@ -27,6 +27,12 @@ class TestRandint:
         assert (4 <= RandInt('D3+3').get <= 6)
         assert (6 <= RandInt('3D3+3').get <= 12)
 
+    def test_avg(self):
+        assert RandInt('D6').avg == 3.5
+        assert RandInt(1).avg == 1
+        assert RandInt('D3+1').avg == 3
+        assert RandInt('2D6+1').avg == 8
+
     def test_str(self):
         assert str(RandInt('D6')) == 'D6'
         assert str(RandInt('D3')) == 'D3'

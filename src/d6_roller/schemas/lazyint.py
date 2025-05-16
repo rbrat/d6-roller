@@ -50,6 +50,12 @@ class RandInt(BaseModel):
                 return sum([np.random.choice(DICE_MAP[self.dice_size]) for _ in np.arange(self.dice_num)]) \
                     + self.stationary
 
+    @property
+    def avg(self) -> float:
+        match self.dice_num:
+            case 0: return float(self.stationary)
+            case _: return float(self.dice_num * ((1 + int(self.dice_size)) / 2) + self.stationary)
+
     def __str__(self):
         match self.dice_num:
             case 0: return str(self.stationary)
